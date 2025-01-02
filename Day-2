@@ -1,0 +1,25 @@
+1823. Find the Winner of the Circular Game
+class Solution {
+public:
+    int findTheWinner(int n, int k) {
+        //make a vector to store the elements 1 to n
+        vector<int>circle;
+        for(int i=1;i<=n;i++){
+            circle.push_back(i);
+        }
+
+        //maintain a start index to get the index of the removing element
+        int startindex=0;
+
+        while(circle.size()>1){
+            int removalindex=(startindex+k-1)%(circle.size());
+
+            //remove element at removalindex
+            circle.erase(circle.begin()+removalindex);
+
+            //update the starting index
+            startindex=removalindex;
+        }
+        return circle.front();
+    }
+};
